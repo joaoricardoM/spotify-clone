@@ -21,7 +21,7 @@ export const AuthModal = () => {
   const { session } = useSessionContext()
 
   const onChange = (open: boolean) => {
-    if (!isOpen) {
+    if (!open) {
       onClose()
     }
   }
