@@ -8,7 +8,7 @@ interface ModalProps {
   onChange: (open: boolean) => void
   title: string
   description: string
-  children: string
+  children: React.ReactNode
 }
 
 export const Modal: React.FC<ModalProps> = ({
@@ -34,13 +34,14 @@ export const Modal: React.FC<ModalProps> = ({
         h-full 
         md:h-auto 
         md:max-h-[85vh] 
-        w-full md:w-[90vw] 
+        w-full 
+        md:w-[90vw] 
         md:max-w-[450px] 
         translate-x-[-50%]
         translate-y-[-50%]
         rounded-md
         bg-neutral-800
-        py-[25px]
+        p-[25px]
         focus:outline-none
         "
         >
@@ -58,13 +59,13 @@ export const Modal: React.FC<ModalProps> = ({
             className="
               mb-5
               text-sm
-              loading-normal
+              leading-normal 
               text-center
             "
           >
             {description}
           </Dialog.Description>
-          <div className="">{children}</div>
+          <div>{children}</div>
           <Dialog.Close asChild>
             <button
               className="
