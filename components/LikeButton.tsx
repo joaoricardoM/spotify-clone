@@ -43,7 +43,7 @@ export const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
     fetchData()
   }, [songId, supabaseClient, user?.id])
 
-  const icon = isLiked ? AiFillHeart : AiOutlineHeart
+  const Icon = isLiked ? AiFillHeart : AiOutlineHeart
 
   const handleLike = async () => {
     if (!user) {
@@ -60,7 +60,7 @@ export const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
       if (error) {
         toast.error(error.message)
       } else {
-        setIsLiked(true)
+        setIsLiked(false)
       }
     } else {
       const { error } = await supabaseClient.from('liked_songs').insert({
