@@ -3,7 +3,6 @@ import { NextResponse } from 'next/server'
 import { headers } from 'next/headers'
 
 import { stripe } from '@/libs/Stripe'
-
 import {
   upsertProductRecord,
   upsertPriceRecord,
@@ -27,7 +26,6 @@ export async function POST(request: Request) {
 
   const webhookSecret =
     process.env.STRIPE_WEBHOOK_SECRET_LIVE ?? process.env.STRIPE_WEBHOOK_SECRET
-
   let event: Stripe.Event
 
   try {
@@ -35,7 +33,7 @@ export async function POST(request: Request) {
     event = stripe.webhooks.constructEvent(body, sig, webhookSecret)
   } catch (err: any) {
     console.log(`❌ Error message: ${err.message}`)
-    return new NextResponse(`Webhook Error: ${err.message}, { status: 400 }`)
+    return new NextResponse(`Webhook Error: ${err.message}`, { status: 400 })
   }
 
   if (relevantEvents.has(event.type)) {
@@ -45,7 +43,6 @@ export async function POST(request: Request) {
         case 'product.updated':
           await upsertProductRecord(event.data.object as Stripe.Product)
           break
-
         case 'price.created':
         case 'price.updated':
           await upsertPriceRecord(event.data.object as Stripe.Price)
