@@ -59,7 +59,6 @@ const createOrRetrieveCustomer = async ({
     .select('stripe_customer_id')
     .eq('id', uuid)
     .single()
-
   if (error || !data?.stripe_customer_id) {
     const customerData: { metadata: { supabaseUUID: string }; email?: string } =
       {
@@ -67,15 +66,13 @@ const createOrRetrieveCustomer = async ({
           supabaseUUID: uuid
         }
       }
-
     if (email) customerData.email = email
     const customer = await stripe.customers.create(customerData)
     const { error: supabaseError } = await supabaseAdmin
       .from('customers')
       .insert([{ id: uuid, stripe_customer_id: customer.id }])
-
     if (supabaseError) throw supabaseError
-    console.log(`New customer created and inserted for ${uuid}`)
+    console.log(`New customer created and inserted for ${uuid}.`)
     return customer.id
   }
   return data.stripe_customer_id
@@ -85,14 +82,12 @@ const copyBillingDetailsToCustomer = async (
   uuid: string,
   payment_method: Stripe.PaymentMethod
 ) => {
+  //Todo: check this assertion
   const customer = payment_method.customer as string
   const { name, phone, address } = payment_method.billing_details
-
   if (!name || !phone || !address) return
   //@ts-ignore
-
   await stripe.customers.update(customer, { name, phone, address })
-
   const { error } = await supabaseAdmin
     .from('users')
     .update({
@@ -100,7 +95,6 @@ const copyBillingDetailsToCustomer = async (
       payment_method: { ...payment_method[payment_method.type] }
     })
     .eq('id', uuid)
-
   if (error) throw error
 }
 
@@ -109,12 +103,12 @@ const manageSubscriptionStatusChange = async (
   customerId: string,
   createAction = false
 ) => {
+  // Get customer's UUID from mapping table.
   const { data: customerData, error: noCustomerError } = await supabaseAdmin
     .from('customers')
     .select('id')
     .eq('stripe_customer_id', customerId)
     .single()
-
   if (noCustomerError) throw noCustomerError
 
   const { id: uuid } = customerData!
@@ -122,7 +116,6 @@ const manageSubscriptionStatusChange = async (
   const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
     expand: ['default_payment_method']
   })
-
   // Upsert the latest status of the subscription object.
   const subscriptionData: Database['public']['Tables']['subscriptions']['Insert'] =
     {
