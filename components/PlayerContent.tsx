@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react'
 
 import { Song } from '@/types'
-import { MediaItem } from './MediaItem'
+import MediaItem from './MediaItem'
 import { LikeButton } from './LikeButton'
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs'
 import { HiSpeakerWave, HiSpeakerXMark } from 'react-icons/hi2'

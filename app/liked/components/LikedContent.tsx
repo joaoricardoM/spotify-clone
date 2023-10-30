@@ -5,7 +5,7 @@ import React, { useEffect } from 'react'
 
 import { Song } from '@/types'
 import { useUser } from '@/hooks/useUser'
-import { MediaItem } from '@/components/MediaItem'
+import MediaItem from '@/components/MediaItem'
 import { LikeButton } from '@/components/LikeButton'
 import useOnPlay from '@/hooks/useOnPlay'
 

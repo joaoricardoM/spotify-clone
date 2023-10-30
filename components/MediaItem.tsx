@@ -10,7 +10,7 @@ interface MediaItemProps {
   onClick?: (id: string) => void
 }
 
-export const MediaItem: React.FC<MediaItemProps> = ({ data, onClick }) => {
+const MediaItem: React.FC<MediaItemProps> = ({ data, onClick }) => {
   const imageURL = useLoadImage(data)
 
   const handleClick = () => {
@@ -58,3 +58,4 @@ export const MediaItem: React.FC<MediaItemProps> = ({ data, onClick }) => {
     </div>
   )
 }
+export default MediaItem
