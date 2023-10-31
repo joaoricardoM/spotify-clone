@@ -29,6 +29,7 @@ const Liked = async () => {
                 fill
                 alt="Playlist"
                 src="/images/liked.png"
+                sizes=""
               />
             </div>
             <div className="flex flex-col gap-y-2 mt-4 md:mt-0">

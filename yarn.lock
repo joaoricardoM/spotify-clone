@@ -2799,10 +2799,10 @@ sucrase@^3.32.0:
     pirates "^4.0.1"
     ts-interface-checker "^0.1.9"
 
-supabase@^1.100.1:
-  version "1.100.1"
-  resolved "https://registry.npmjs.org/supabase/-/supabase-1.100.1.tgz"
-  integrity sha512-Tn03fjNGiCoJ06ZeBtCmaNj3Kqf2UzM8bpptiIrP7g5wPmAHL8MTDM2ZEemkRxAWAm2E+fcb8zGOSNbh0RCQGQ==
+supabase@^1.110.1:
+  version "1.110.1"
+  resolved "https://registry.npmjs.org/supabase/-/supabase-1.110.1.tgz"
+  integrity sha512-pQVfbs/n8ZBDuSDv6YJKIH1Uh/QBRxjp6pLW52YkKgjgfwndlKwKuJoPiuWDxBkRG1QXxmCHi3Hk+JeNx9/FRg==
   dependencies:
     bin-links "^4.0.1"
     https-proxy-agent "^7.0.2"
