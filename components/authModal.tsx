@@ -1,30 +1,24 @@
 'use client'
-import React, { useEffect } from 'react'
 
+import React, { useEffect } from 'react'
+import { Auth } from '@supabase/auth-ui-react'
+import { ThemeSupa } from '@supabase/auth-ui-shared'
 import {
   useSessionContext,
   useSupabaseClient
 } from '@supabase/auth-helpers-react'
 import { useRouter } from 'next/navigation'
-import { Auth } from '@supabase/auth-ui-react'
-import { ThemeSupa } from '@supabase/auth-ui-shared'
 
 import useAuthModal from '@/hooks/useAuthModal'
 
-import { Modal } from './Modal'
+import Modal from './Modal'
 
-export const AuthModal = () => {
-  const supabaseClient = useSupabaseClient()
+const AuthModal = () => {
+  const { session } = useSessionContext()
   const router = useRouter()
   const { onClose, isOpen } = useAuthModal()
 
-  const { session } = useSessionContext()
-
-  const onChange = (open: boolean) => {
-    if (!open) {
-      onClose()
-    }
-  }
+  const supabaseClient = useSupabaseClient()
 
   useEffect(() => {
     if (session) {
@@ -33,16 +27,23 @@ export const AuthModal = () => {
     }
   }, [session, router, onClose])
 
+  const onChange = (open: boolean) => {
+    if (!open) {
+      onClose()
+    }
+  }
+
   return (
     <Modal
-      title="Welcome Back"
-      description="Login in your account"
+      title="Welcome back"
+      description="Login to your account."
       isOpen={isOpen}
       onChange={onChange}
     >
       <Auth
         supabaseClient={supabaseClient}
-        magicLink
+        providers={['github']}
+        magicLink={true}
         appearance={{
           theme: ThemeSupa,
           variables: {
@@ -55,8 +56,9 @@ export const AuthModal = () => {
           }
         }}
         theme="dark"
-        providers={['github']}
       />
     </Modal>
   )
 }
+
+export default AuthModal

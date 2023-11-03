@@ -5,13 +5,13 @@ import { toast } from 'react-hot-toast'
 
 import useSubscribeModal from '@/hooks/useSubscribeModal'
 import { useUser } from '@/hooks/useUser'
-import { postData } from '@/libs/Helpers'
+import { postData } from '@/libs/helpers'
 
 import { Price, ProductWithPrice } from '@/types'
 
-import { Modal } from './Modal'
+import Modal from './Modal'
 import Button from './Button'
-import { getStripe } from '@/libs/StripeClient'
+import { getStripe } from '@/libs/stripeClient'
 
 interface SubscribeModalProps {
   products: ProductWithPrice[]
