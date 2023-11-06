@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState, createContext, useContext } from 'react'
 import {
   useUser as useSupaUser,
@@ -63,15 +62,7 @@ export const MyUserContextProvider = (props: Props) => {
       setUserDetails(null)
       setSubscription(null)
     }
-  }, [
-    user,
-    isLoadingUser,
-    getSubscription,
-    getUserDetails,
-    isLoadingData,
-    userDetails,
-    subscription
-  ])
+  }, [user, isLoadingUser])
 
   const value = {
     accessToken,

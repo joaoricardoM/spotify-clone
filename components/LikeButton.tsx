@@ -13,7 +13,7 @@ interface LikeButtonProps {
   songId: string
 }
 
-export const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
   const router = useRouter()
   const { supabaseClient } = useSessionContext()
 
@@ -92,3 +92,5 @@ export const LikeButton: React.FC<LikeButtonProps> = ({ songId }) => {
     </button>
   )
 }
+
+export default LikeButton
