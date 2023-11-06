@@ -26,9 +26,9 @@
     "react-icons": "^4.11.0",
     "react-spinners": "^0.13.8",
     "stripe": "^13.10.0",
-    "use-sound": "^4.0.1",
     "tailwind-merge": "^1.14.0",
     "uniqid": "^5.4.0",
+    "use-sound": "^4.0.1",
     "zustand": "^4.4.3"
   },
   "devDependencies": {
@@ -42,7 +42,6 @@
     "postcss": "^8",
     "supabase": "^1.110.1",
     "tailwindcss": "^3",
-    "typescript": "^5",
-    "use-sound": "^4.0.1"
+    "typescript": "^5"
   }
 }
