@@ -1,10 +1,9 @@
+import { stripe } from '@/libs/stripe'
+import { createOrRetrieveCustomer } from '@/libs/supabaseAdmin'
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+import { getURL } from 'next/dist/shared/lib/utils'
 import { cookies } from 'next/headers'
 import { NextResponse } from 'next/server'
-
-import { stripe } from '@/libs/stripe'
-import { getURL } from '@/libs/helpers'
-import { createOrRetrieveCustomer } from '@/libs/supabaseAdmin'
 
 export async function POST(request: Request) {
   const { price, quantity = 1, metadata = {} } = await request.json()
@@ -35,9 +34,9 @@ export async function POST(request: Request) {
       mode: 'subscription',
       allow_promotion_codes: true,
       subscription_data: {
-        trial_from_plan: true,
+        //trial_from_plan: true,
         metadata
-      } as any, // Type assertion to inform TypeScript about trial_from_plan
+      },
       success_url: `${getURL()}/account`,
       cancel_url: `${getURL()}/`
     })
