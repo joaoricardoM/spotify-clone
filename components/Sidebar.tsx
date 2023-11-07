@@ -10,6 +10,8 @@ import Library from './Library'
 import { Song } from '@/types'
 import usePlayer from '@/hooks/usePlayer'
 import { twMerge } from 'tailwind-merge'
+import Logo from './Logo'
+import Link from 'next/link'
 
 interface SidebarProps {
   children: React.ReactNode
@@ -49,6 +51,11 @@ const Sidebar: React.FC<SidebarProps> = ({ children, songs }) => {
       )}
     >
       <div className="hidden md:flex flex-col gap-y-2 bg-black h-full w-[300px] p-2">
+        <div className="flex-1 items-center justify-center h-20 w-44">
+          <Link href="/">
+            <Logo />
+          </Link>
+        </div>
         <Box>
           <div className="flex flex-col gap-y-4 px-5 py-4">
             {routes.map((item) => (
